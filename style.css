@@ -1,0 +1,435 @@
+/* =========================================================
+   ธีมสี (แก้สีทั้งเว็บได้ที่นี่ที่เดียว)
+   ครีม / เขียวพาสเทล / ฟ้าอ่อน / ชมพูอ่อน
+   ========================================================= */
+:root {
+  --cream: #FFF7E8;
+  --mint: #DCEEDF;
+  --mint-deep: #8FC1A1;
+  --sky: #DDEBF7;
+  --sky-deep: #86B3D3;
+  --pink: #FBE0E4;
+  --pink-deep: #E3909F;
+  --sun: #F4C95D;
+  --ink: #4A4356;       /* สีตัวอักษรหลัก (ม่วงเทาอ่อน ๆ ไม่ดำจัด) */
+  --ink-soft: #6F6779;
+  --night-top: #2E3A5E;
+  --night-bottom: #5B6A97;
+  --font-head: "Mali", "Noto Sans Thai Looped", "Sarabun", system-ui, sans-serif;
+  --font-body: "Noto Sans Thai Looped", "Sarabun", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--ink);
+  background: linear-gradient(180deg, var(--cream) 0%, #F6F3E6 55%, #EAF3EC 100%);
+  background-attachment: fixed;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+p { margin: 0 0 0.9rem; }
+
+/* โฟกัสด้วยคีย์บอร์ดต้องเห็นชัด */
+:focus-visible { outline: 3px solid var(--sky-deep); outline-offset: 3px; }
+
+/* =========================================================
+   ตัวเว็บ
+   ========================================================= */
+.room {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: max(1.2rem, env(safe-area-inset-top)) 1rem max(2rem, env(safe-area-inset-bottom));
+}
+
+.hero { text-align: center; padding: 1.5rem 0.5rem 1.2rem; }
+
+.site-title {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: clamp(1.55rem, 6.4vw, 2.3rem);
+  line-height: 1.45;
+  margin: 0 0 1.4rem;
+}
+
+.welcome {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 2rem 2rem 2rem 0.6rem;
+  padding: 1.6rem 1.3rem 1rem;
+  box-shadow: 0 6px 24px rgba(143, 193, 161, 0.22);
+  animation: settle 1.4s ease-out both;   /* เปิดหน้าเว็บมาแล้วค่อย ๆ ปรากฏ (ครั้งเดียว) */
+}
+.hello { font-family: var(--font-head); font-size: 1.3rem; font-weight: 600; }
+
+@keyframes settle {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* แต่ละส่วนเป็นแผ่นสีนุ่ม ๆ คนละโทน และมุมโค้งไม่เท่ากัน */
+.panel {
+  margin-top: 1.4rem;
+  padding: 1.5rem 1.2rem 1.3rem;
+  border-radius: 1.8rem;
+  box-shadow: 0 4px 18px rgba(74, 67, 86, 0.07);
+}
+.panel-mint  { background: var(--mint); border-radius: 1.8rem 0.8rem 1.8rem 1.8rem; }
+.panel-pink  { background: var(--pink); border-radius: 0.8rem 1.8rem 1.8rem 1.8rem; }
+.panel-sky   { background: var(--sky);  border-radius: 1.8rem 1.8rem 0.8rem 1.8rem; }
+.panel-cream { background: #FFFDF6; border: 2px dashed #EBDDB8; }
+
+h2 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  margin: 0 0 0.3rem;
+}
+.hint { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 1rem; }
+
+/* =========================================================
+   ปุ่ม
+   ========================================================= */
+.btn, .mood-btn {
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  border: none;
+  cursor: pointer;
+  min-height: 48px;              /* ขนาดพอดีนิ้วบนมือถือ */
+  padding: 0.65rem 1.2rem;
+  border-radius: 999px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.btn-soft { background: #fff; box-shadow: 0 3px 10px rgba(74, 67, 86, 0.1); }
+.btn-ghost { background: rgba(255, 255, 255, 0.45); border: 2px solid rgba(74, 67, 86, 0.15); }
+
+/* hover สำหรับคอมพิวเตอร์ */
+@media (hover: hover) {
+  .btn:hover, .mood-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(74, 67, 86, 0.15); }
+}
+/* active สำหรับโทรศัพท์ (ตอนนิ้วแตะ) */
+.btn:active, .mood-btn:active { transform: scale(0.96); box-shadow: 0 1px 4px rgba(74, 67, 86, 0.12); }
+
+.mood-grid { display: grid; grid-template-columns: 1fr; gap: 0.6rem; }
+.mood-btn { background: rgba(255, 255, 255, 0.7); text-align: left; border-radius: 1.2rem; }
+.mood-btn[aria-pressed="true"] { background: #fff; box-shadow: 0 0 0 3px var(--mint-deep); }
+@media (min-width: 560px) { .mood-grid { grid-template-columns: 1fr 1fr; } }
+
+.actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+
+/* =========================================================
+   กล่องข้อความปลอบใจ
+   ========================================================= */
+.mood-message, .rest-message {
+  margin-top: 1.1rem;
+  min-height: 7rem;
+  padding: 1.1rem 1.2rem 0.4rem;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 1.4rem;
+}
+.rest-message { min-height: 0; margin-top: 1rem; padding: 0; background: none; }
+.rest-message p { background: rgba(255, 255, 255, 0.75); border-radius: 1.2rem; padding: 0.9rem 1.1rem; margin: 0; }
+.rest-message p:empty { display: none; }
+.fade-in { animation: fadeIn 0.9s ease both; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* =========================================================
+   ซองจดหมาย (วาดด้วย CSS ล้วน)
+   ========================================================= */
+.envelope {
+  position: relative;
+  display: block;
+  width: 190px;
+  height: 128px;
+  margin: 1.2rem auto 0.6rem;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.envelope:active { transform: scale(0.96); }
+@media (hover: hover) { .envelope:hover { transform: translateY(-3px); } }
+.env-back, .env-front, .env-flap { position: absolute; left: 0; right: 0; }
+.env-back  { top: 0; bottom: 0; background: #F2C3CC; border-radius: 12px; }
+.env-front {
+  top: 0; bottom: 0; background: #FFF1F3; border-radius: 12px;
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+  box-shadow: inset 0 -6px 0 rgba(227, 144, 159, 0.15);
+}
+.env-flap {
+  top: 0; height: 66px; background: #F8D3DA; border-radius: 12px 12px 0 0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform 0.8s ease;
+  z-index: 2;
+}
+.env-heart { position: absolute; left: 50%; top: 54%; transform: translate(-50%, -50%); font-size: 1.5rem; z-index: 3; }
+.envelope[aria-expanded="true"] .env-flap { transform: rotateX(180deg); z-index: 0; }
+.envelope:not([aria-expanded="true"]) .env-heart { animation: beat 3.2s ease-in-out infinite; }
+@keyframes beat { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.15); } }
+
+.letter-paper {
+  margin-top: 1rem;
+  padding: 1.4rem 1.2rem 0.6rem;
+  background: #FFFEFA;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(227, 144, 159, 0.2);
+  background-image: repeating-linear-gradient(transparent 0 2.2rem, rgba(134, 179, 211, 0.12) 2.2rem 2.25rem);
+}
+.letter-paper p {
+  opacity: 0;
+  animation: lineIn 1.1s ease forwards;
+  animation-delay: var(--delay, 0s);   /* JS ใส่ค่าหน่วงให้แต่ละบรรทัด */
+}
+@keyframes lineIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.letter-paper .to, .letter-paper .from { font-family: var(--font-head); font-weight: 600; }
+.kept-note { text-align: center; margin-top: 1rem; font-family: var(--font-head); }
+
+/* =========================================================
+   หน้าต่างท้องฟ้า + แมวน้อย
+   ========================================================= */
+.window-wrap { position: relative; width: 240px; height: 270px; margin: 1.2rem auto 0.5rem; }
+.window {
+  position: absolute; inset: 0 10px 28px;
+  border: 10px solid #fff;
+  border-radius: 120px 120px 10px 10px;
+  background: linear-gradient(180deg, var(--night-top), var(--night-bottom));
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(46, 58, 94, 0.25);
+}
+.moon {
+  position: absolute; top: 22px; right: 30px; width: 40px; height: 40px; border-radius: 50%;
+  background: #FFF3C4; box-shadow: 0 0 22px rgba(255, 243, 196, 0.7);
+}
+.moon::after { content: ""; position: absolute; top: -4px; right: -7px; width: 34px; height: 34px; border-radius: 50%; background: var(--night-top); opacity: 0; }
+.cloud { position: absolute; height: 16px; border-radius: 16px; background: rgba(255, 255, 255, 0.35); animation: drift 36s linear infinite alternate; }
+.cloud::before { content: ""; position: absolute; left: 14px; top: -9px; width: 24px; height: 20px; border-radius: 50%; background: inherit; }
+.c1 { width: 56px; top: 90px; left: 10px; }
+.c2 { width: 44px; top: 130px; left: 90px; animation-duration: 48s; animation-direction: alternate-reverse; }
+@keyframes drift { from { transform: translateX(-10px); } to { transform: translateX(60px); } }
+
+.sky-stars .star {
+  position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #FFF8DA;
+  animation: twinkle 4.5s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+.sky-stars .star.new { animation: appear 2s ease both, twinkle 4.5s ease-in-out 2s infinite; width: 6px; height: 6px; }
+@keyframes twinkle { 0%, 100% { opacity: 0.25; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
+@keyframes appear { from { opacity: 0; transform: scale(0.2); } to { opacity: 1; transform: scale(1); } }
+
+.sill { position: absolute; left: 0; right: 0; bottom: 14px; height: 16px; background: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(74, 67, 86, 0.12); }
+
+/* แมวน้อย: ใช้ div วงกลม/สามเหลี่ยมประกอบกัน */
+.cat { position: absolute; left: 32px; bottom: 28px; width: 100px; height: 82px; border: none; background: none; padding: 0; cursor: pointer; }
+.cat:active { transform: scale(0.96); }
+.cat-body { position: absolute; left: 6px; bottom: 0; width: 76px; height: 46px; background: #F7E6D0; border-radius: 40px 40px 14px 14px; }
+.cat-head { position: absolute; left: 20px; bottom: 26px; width: 54px; height: 44px; background: #F7E6D0; border-radius: 50%; }
+.cat-ear { position: absolute; bottom: 58px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 18px solid #F7E6D0; }
+.cat-ear.l { left: 20px; transform: rotate(-12deg); }
+.cat-ear.r { left: 54px; transform: rotate(12deg); }
+.cat .eye { position: absolute; top: 17px; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); animation: blink 6s infinite; }
+.cat .eye.l { left: 14px; }
+.cat .eye.r { right: 14px; }
+.cat .nose { position: absolute; left: 24px; top: 25px; width: 6px; height: 5px; border-radius: 50%; background: var(--pink-deep); }
+.cat-tail { position: absolute; left: 70px; bottom: 6px; width: 38px; height: 12px; background: #F7E6D0; border-radius: 12px; transform-origin: left center; animation: tail 5s ease-in-out infinite; }
+@keyframes tail { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(18deg); } }
+@keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }
+.cat-text { text-align: center; min-height: 3.4rem; margin: 0.3rem 0 0.5rem; }
+
+.rest-buttons { display: grid; gap: 0.6rem; }
+
+/* =========================================================
+   กล่องเขียนข้อความ + การ์ด
+   ========================================================= */
+.write-label { display: block; font-weight: 500; margin-bottom: 0.7rem; }
+textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid #EBDDB8;
+  border-radius: 1.1rem;
+  padding: 0.9rem 1rem;
+  resize: vertical;
+}
+textarea:focus { outline: none; border-color: var(--sun); box-shadow: 0 0 0 3px rgba(244, 201, 93, 0.35); }
+.note-status { min-height: 1.6rem; margin-top: 0.7rem; font-size: 0.95rem; color: var(--ink-soft); }
+.privacy { font-size: 0.9rem; color: var(--ink-soft); background: rgba(235, 221, 184, 0.3); border-radius: 1rem; padding: 0.8rem 1rem; margin: 0.4rem 0 0; }
+
+.note-card {
+  margin-top: 0.9rem;
+  min-height: 7.5rem;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  padding: 1.2rem 1.2rem 0.4rem;
+  background: #fff;
+  border-radius: 1.4rem 0.6rem 1.4rem 0.6rem;
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+  transform: rotate(-1deg);
+}
+
+.foot { text-align: center; margin-top: 2rem; color: var(--ink-soft); }
+.foot .small { font-size: 0.88rem; }
+
+/* =========================================================
+   ตกแต่งพื้นหลังที่ลอยช้า ๆ + เอฟเฟกต์ประกายหัวใจ
+   ========================================================= */
+.deco { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.deco span {
+  position: absolute;
+  opacity: 0.55;
+  animation: float 18s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-16px) rotate(4deg); } }
+
+.burst-layer { position: fixed; inset: 0; z-index: 50; pointer-events: none; overflow: hidden; }
+.burst-layer span { position: absolute; font-size: 1.1rem; animation: burst 1.6s ease-out forwards; }
+@keyframes burst {
+  from { opacity: 1; transform: translate(0, 0) scale(0.6); }
+  to   { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.2); }
+}
+
+/* =========================================================
+   สำหรับคนที่ไม่อยากให้มีแอนิเมชัน (prefers-reduced-motion)
+   ปิดการเคลื่อนไหวทั้งหมด แต่ข้อความยังแสดงครบ
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .letter-paper p { opacity: 1; }
+  .sky-stars .star { opacity: 0.8; }
+  .burst-layer { display: none; }
+}
+
+/* ===== มุมรูปคนโปรด: เพิ่มใหม่เท่านั้น 💗 ===== */
+
+.favorite-photo {
+  position: relative;
+  width: min(100%, 320px);
+  margin: 1.8rem auto 1rem;
+  text-align: center;
+}
+
+.polaroid {
+  position: relative;
+  width: 230px;
+  max-width: 85%;
+  margin: auto;
+  padding: 10px 10px 16px;
+  background: #fffdf8;
+  border: 1px solid #f5dce0;
+  border-radius: 5px;
+  box-shadow: 0 8px 20px rgba(74, 67, 86, 0.13);
+  transform: rotate(-2deg);
+  animation: favoritePhotoFloat 5s ease-in-out infinite;
+}
+
+.photo-frame {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #fbe0e4;
+  border-radius: 3px;
+}
+
+.yeng-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.photo-caption {
+  padding-top: 10px;
+}
+
+.photo-title {
+  margin: 0;
+  color: #b76e7d;
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.photo-subtitle {
+  margin: 3px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.75rem;
+}
+
+.photo-flower,
+.photo-heart {
+  position: absolute;
+  pointer-events: none;
+}
+
+.photo-flower {
+  top: -17px;
+  left: -12px;
+  font-size: 2rem;
+  animation: favoriteFlowerSway 4s ease-in-out infinite;
+}
+
+.photo-heart {
+  top: 20px;
+  right: -17px;
+  color: var(--pink-deep);
+  font-size: 2.4rem;
+  animation: favoriteHeartBeat 3s ease-in-out infinite;
+}
+
+.photo-footnote {
+  margin: 1rem 0 0;
+  color: var(--ink-soft);
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+}
+
+@keyframes favoritePhotoFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+}
+
+@keyframes favoriteFlowerSway {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
+
+@keyframes favoriteHeartBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+@media (max-width: 360px) {
+  .polaroid {
+    width: 210px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .polaroid,
+  .photo-flower,
+  .photo-heart {
+    animation: none;
+  }
+}

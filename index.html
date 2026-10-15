@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FFF7E8">
+  <meta name="description" content="พื้นที่เล็ก ๆ สำหรับพักใจของคนเก่ง 🌷">
+  <title>วันนี้เหนื่อยไหมคนเก่งของเค้า 🌷</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600&family=Noto+Sans+Thai+Looped:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="deco" id="deco" aria-hidden="true"></div>
+  <div class="burst-layer" id="burstLayer" aria-hidden="true"></div>
+
+  <main class="room">
+
+    <!-- 1. หน้าแรก -->
+    <header class="hero" id="home">
+      <h1 class="site-title">วันนี้เหนื่อยไหมคนเก่งของเค้า 🌷</h1>
+
+      <div class="welcome">
+        <p class="hello">ฮัลโหลล คนเก่งของเค้า 💗</p>
+        <p>
+          วันนี้เหนื่อยมามากแล้วหรือเปล่า<br>
+          ถ้าเหนื่อยก็พักก่อนนะ ไม่ต้องรีบไปไหนเลย<br>
+          ตรงนี้ไม่มีอะไรที่เธอต้องพิสูจน์<br>
+          ไม่ต้องเก่ง ไม่ต้องเข้มแข็ง ไม่ต้องฝืนยิ้มก็ได้
+        </p>
+        <p>
+          วันนี้เธอแค่เป็นเธอก็พอแล้วนะ<br>
+          เค้ายังรักเธอเหมือนเดิมเลย :)
+        </p>
+      </div>
+
+      <!-- มุมรูปคนโปรด 💗 -->
+      <figure class="favorite-photo">
+        <span class="photo-decoration photo-flower" aria-hidden="true">🌼</span>
+        <span class="photo-decoration photo-heart" aria-hidden="true">♡</span>
+
+        <div class="polaroid">
+          <div class="photo-frame">
+            <img
+              src="yeng.jpg"
+              alt="รูปคนเก่งของเค้า"
+              class="yeng-photo"
+              loading="eager"
+            >
+          </div>
+
+          <figcaption class="photo-caption">
+            <span class="photo-title">คนเก่งของเค้าเอง 💗</span>
+            <span class="photo-subtitle">แค่เธอเป็นเธอ ก็น่ารักที่สุดแล้ว</span>
+          </figcaption>
+        </div>
+
+        <p class="photo-footnote">♡ รูปคนโปรดของเค้า ♡</p>
+      </figure>
+    </header>
+
+    <!-- 2. เลือกความรู้สึก -->
+    <section class="panel panel-mint" aria-labelledby="moodTitle">
+      <h2 id="moodTitle">ตอนนี้รู้สึกยังไงบ้าง</h2>
+      <p class="hint">เลือกได้ตามที่รู้สึกเลยนะ หรือไม่เลือกก็ไม่เป็นไร</p>
+
+      <div class="mood-grid" id="moodGrid">
+        <button class="mood-btn" data-mood="tired" aria-pressed="false">วันนี้เหนื่อยจัง</button>
+        <button class="mood-btn" data-mood="notgood" aria-pressed="false">วันนี้รู้สึกไม่เก่งเลย</button>
+        <button class="mood-btn" data-mood="sad" aria-pressed="false">วันนี้เศร้าแต่ไม่รู้ทำไม</button>
+        <button class="mood-btn" data-mood="beside" aria-pressed="false">วันนี้อยากมีคนอยู่ข้าง ๆ</button>
+        <button class="mood-btn" data-mood="vent" aria-pressed="false">วันนี้มีเรื่องอยากระบาย</button>
+        <button class="mood-btn" data-mood="love" aria-pressed="false">วันนี้แค่อยากได้รับความรัก</button>
+        <button class="mood-btn" data-mood="good" aria-pressed="false">จริง ๆ วันนี้ก็โอเคนะ แค่อยากมาหาเค้า</button>
+      </div>
+
+      <div class="mood-message" id="moodMessage" aria-live="polite">
+        <p id="moodText">ข้อความของวันนี้จะอยู่ตรงนี้นะ 🌼</p>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-soft" id="moodAgain" hidden>ขออ่านข้อความอีกอันได้ไหม</button>
+        <button class="btn btn-ghost" id="gotoWrite" hidden>ไปที่กล่องเขียนความรู้สึก</button>
+      </div>
+    </section>
+
+    <!-- 3. จดหมาย -->
+    <section class="panel panel-pink" aria-labelledby="letterTitle" id="letterSection">
+      <h2 id="letterTitle">มุมจดหมายจากเค้า 💌</h2>
+      <p class="hint">แตะซองจดหมายเมื่อพร้อมนะ</p>
+
+      <button class="envelope" id="envelope"
+        aria-expanded="false" aria-controls="letterPaper"
+        aria-label="เปิดจดหมายจากเค้า">
+        <span class="env-back"></span>
+        <span class="env-flap"></span>
+        <span class="env-front"></span>
+        <span class="env-heart">💗</span>
+      </button>
+
+      <article class="letter-paper" id="letterPaper" hidden>
+        <div id="letterBody"></div>
+      </article>
+
+      <div class="actions" id="letterActions" hidden>
+        <button class="btn btn-soft" id="letterAgain">อ่านจดหมายอีกครั้ง</button>
+        <button class="btn btn-ghost" id="letterKeep">เก็บจดหมายไว้ในใจ</button>
+      </div>
+
+      <p class="kept-note" id="keptNote" aria-live="polite" hidden>
+        เก็บไว้ในใจแล้วนะ 💗
+      </p>
+    </section>
+
+    <!-- 4. มุมพักใจ -->
+    <section class="panel panel-sky" aria-labelledby="restTitle" id="restSection">
+      <h2 id="restTitle">มุมพักใจเล็ก ๆ 🌙</h2>
+      <p class="hint">ไม่ต้องทำอะไรก็ได้ ปุ่มพวกนี้มีไว้เผื่ออยากกดเล่นเฉย ๆ</p>
+
+      <div class="window-wrap">
+        <div class="window" aria-hidden="true">
+          <div class="moon"></div>
+          <div class="cloud c1"></div>
+          <div class="cloud c2"></div>
+          <div class="sky-stars" id="skyStars"></div>
+        </div>
+
+        <div class="sill"></div>
+
+        <button class="cat" id="cat"
+          aria-label="แมวน้อยที่นั่งข้างหน้าต่าง แตะเพื่อฟังเสียงแมว">
+          <span class="cat-tail"></span>
+          <span class="cat-body"></span>
+          <span class="cat-ear l"></span>
+          <span class="cat-ear r"></span>
+          <span class="cat-head">
+            <i class="eye l"></i>
+            <i class="eye r"></i>
+            <i class="nose"></i>
+          </span>
+        </button>
+      </div>
+
+      <p class="cat-text" id="catText" aria-live="polite">
+        แมวน้อยนั่งมองดาวอยู่ข้างหน้าต่าง 🐱
+      </p>
+
+      <div class="rest-buttons">
+        <button class="btn btn-soft" id="restTogether">พักด้วยกันสักครู่นะ</button>
+        <button class="btn btn-soft" id="noRush">วันนี้ไม่ต้องรีบก็ได้</button>
+        <button class="btn btn-soft" id="hugBtn">สุ่มคำกอดจากเค้า</button>
+        <button class="btn btn-ghost" id="musicBtn" aria-pressed="false">🎵 เปิดเพลงบรรเลงเบา ๆ</button>
+      </div>
+
+      <div class="rest-message" id="restMessage" aria-live="polite">
+        <p id="restText"></p>
+      </div>
+    </section>
+
+    <!-- 5. กล่องเขียนความรู้สึก -->
+    <section class="panel panel-cream" aria-labelledby="writeTitle" id="writeSection">
+      <h2 id="writeTitle">กล่องเล็ก ๆ ของเธอ</h2>
+
+      <label for="noteBox" class="write-label">
+        วันนี้มีอะไรอยากเล่าให้เค้าฟังไหม หรืออยากเขียนไว้เฉย ๆ ก็ได้นะ
+      </label>
+
+      <textarea id="noteBox" rows="6"
+        placeholder="เขียนอะไรก็ได้ ไม่ต้องเรียบเรียงให้ดีนะ..."></textarea>
+
+      <div class="actions">
+        <button class="btn btn-soft" id="saveNote">บันทึกไว้ในเครื่องนี้</button>
+        <button class="btn btn-ghost" id="deleteNote">ลบข้อความที่บันทึกไว้</button>
+      </div>
+
+      <p class="note-status" id="noteStatus" aria-live="polite"></p>
+
+      <p class="privacy">
+        ข้อความนี้ไม่ได้ส่งมาหาเค้านะ อยากให้เธอแค่พิมพ์ระบายเท่านั้น^^
+      </p>
+    </section>
+
+    <!-- 6. การ์ดข้อความ -->
+    <section class="panel panel-mint" aria-labelledby="cardTitle">
+      <h2 id="cardTitle">ข้อความสั้น ๆ ที่อยากบอกเธอ</h2>
+
+      <div class="note-card" id="noteCard" aria-live="polite">
+        <p id="cardText">วันนี้ไม่เก่งก็ไม่เป็นไรนะคนดี</p>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-soft" id="cardAgain">ขอข้อความอีกใบ</button>
+      </div>
+    </section>
+
+    <!-- ท้ายเว็บ -->
+    <footer class="foot">
+      <p>ทำด้วยความรักจากเค้า 🌻</p>
+      <p class="small">
+        ถ้าวันไหนมันหนักเกินกว่าจะถือไว้คนเดียว<br>
+        ลองบอกคนที่ไว้ใจได้นะ 💗
+      </p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
